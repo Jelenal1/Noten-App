@@ -6,6 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import ExamList from "./modules/ExamList";
+import Loggin from "./modules/Login";
 import SemesterList from "./modules/SemesterList";
 import Settings from "./modules/Settings";
 import SubjectList from "./modules/SubjectList";
@@ -33,11 +34,21 @@ function App() {
     },
     { id: 2, titel: "2 Semester", grade: "5.2" },
   ];
+  const [login, setLogin] = useState(false);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SemesterList items={items} />} />
+        <Route
+          path="/"
+          element={
+            login ? (
+              <SemesterList items={items} />
+            ) : (
+              <Loggin setLogin={setLogin} />
+            )
+          }
+        />
         <Route path="/semester" element={<SemesterList items={items} />} />
         <Route path="/subjects" element={<SubjectList items={items} />} />
         <Route path="/exams" element={<ExamList items={items} />} />
