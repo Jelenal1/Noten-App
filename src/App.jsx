@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   BrowserRouter,
   Route,
   Routes,
   useSearchParams,
 } from "react-router-dom";
+import ExamList from "./modules/ExamList";
 import SemesterList from "./modules/SemesterList";
 import Settings from "./modules/Settings";
 import SubjectList from "./modules/SubjectList";
@@ -38,6 +40,7 @@ function App() {
         <Route path="/" element={<SemesterList items={items} />} />
         <Route path="/semester" element={<SemesterList items={items} />} />
         <Route path="/subjects" element={<SubjectList items={items} />} />
+        <Route path="/exams" element={<ExamList items={items} />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>

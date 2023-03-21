@@ -4,7 +4,7 @@ import Navabar from "./Navbar";
 
 function SubjectList({ items }) {
   const navigate = useNavigate();
-  const [linkParams, setLinkParams] = useSearchParams("semesterid");
+  const [linkParams] = useSearchParams();
   const filteredItems = items
     .filter((item) => item.id == linkParams.get("semesterid"))
     .map((item) => {
@@ -23,6 +23,14 @@ function SubjectList({ items }) {
           <li
             key={content.id}
             className="flex p-2 gap-5 m-5 bg-blue-600 w-4/5 text-3xl font-bold text-white"
+            onClick={() =>
+              navigate({
+                pathname: "/exams",
+                search: `?semesterid=${linkParams.get(
+                  "semesterid"
+                )}&contentid=${content.id}`,
+              })
+            }
           >
             <div>{content.titel}</div>
             <div className="ml-auto">{content.grade}</div>

@@ -4,11 +4,16 @@ import Navabar from "./Navbar";
 
 function ExamList({ items }) {
   const navigate = useNavigate();
-  const [linkParams, setLinkParams] = useSearchParams("semesterid");
+  const [linkParams] = useSearchParams();
   const filteredItems = items
     .filter((item) => item.id == linkParams.get("semesterid"))
     .map((item) => {
       return item.content;
+    });
+  const filteredContent = filteredItems[0]
+    .filter((content) => content.id == linkParams.get("contentid"))
+    .map((content) => {
+      return content.exams;
     });
   return (
     <>
@@ -19,7 +24,7 @@ function ExamList({ items }) {
         </div>
       </div>
       <ul className="flex items-center flex-col">
-        {filteredItems[0].map((content) => (
+        {filteredContent[0].map((content) => (
           <li
             key={content.id}
             className="flex p-2 gap-5 m-5 bg-blue-600 w-4/5 text-3xl font-bold text-white"

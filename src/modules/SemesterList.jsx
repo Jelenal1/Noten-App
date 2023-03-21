@@ -4,8 +4,6 @@ import Navabar from "./Navbar";
 
 function SemesterList({ items }) {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const semesterid = searchParams.get("semseterid");
   return (
     <>
       <Navabar PageName={"Semester"} />
