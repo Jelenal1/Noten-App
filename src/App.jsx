@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter,
   Route,
   Routes,
   useSearchParams,
 } from "react-router-dom";
+import { auth } from "./firbase";
 import ExamList from "./modules/ExamList";
 import Loggin from "./modules/Login";
 import SemesterList from "./modules/SemesterList";
@@ -35,19 +37,22 @@ function App() {
     { id: 2, titel: "2 Semester", grade: "5.2" },
   ];
   const [login, setLogin] = useState(false);
+  const user = auth.currentUser;
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  });
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={
-            login ? (
-              <SemesterList items={items} />
-            ) : (
-              <Loggin setLogin={setLogin} />
-            )
-          }
+          element={login ? <SemesterList items={items} /> : <Loggin />}
         />
         <Route path="/semester" element={<SemesterList items={items} />} />
         <Route path="/subjects" element={<SubjectList items={items} />} />
