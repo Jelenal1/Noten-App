@@ -1,13 +1,17 @@
+import { async } from "@firebase/util";
+import { signOut } from "firebase/auth";
 import {
   AiFillHome,
   AiFillSetting,
-  AiOutlineMenu,
+  AiOutlineLogout,
   AiOutlinePlus,
 } from "react-icons/ai";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firbase";
 
 function Navabar({ PageName }) {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="border-b-2 border-black h-16 p-2 flex justify-between items-center">
@@ -17,6 +21,13 @@ function Navabar({ PageName }) {
           </button>
           <button onClick={() => navigate("/semester")}>
             <AiFillHome className="h-10 w-10" />
+          </button>
+          <button
+            onClick={async () => {
+              await auth.signOut();
+            }}
+          >
+            <AiOutlineLogout className="h-10 w-10" />
           </button>
         </div>
 
