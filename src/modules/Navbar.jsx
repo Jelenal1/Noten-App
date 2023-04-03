@@ -19,7 +19,7 @@ function Navabar({ PageName }) {
           <button onClick={() => navigate("/settings")}>
             <AiFillSetting className="h-10 w-10" />
           </button>
-          <button onClick={() => navigate("/semester")}>
+          <button onClick={() => navigate("/")}>
             <AiFillHome className="h-10 w-10" />
           </button>
           <button
