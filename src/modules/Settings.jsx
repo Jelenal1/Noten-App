@@ -8,11 +8,11 @@ function Settings() {
   return (
     <>
       <div className="flex border-b-2 border-black h-16 p-2 items-center justify-between">
-        <button onClick={() => navigate("/semester")}>
+        <button onClick={() => navigate("/")}>
           <AiFillHome className="h-10 w-10" />
         </button>
         <span className="text-3xl">Settings</span>
-        <button onClick={() => navigate("/semester")}>
+        <button onClick={() => navigate("/")}>
           <AiOutlineRight className="w-12 h-12" />
         </button>
       </div>
