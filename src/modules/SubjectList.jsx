@@ -12,7 +12,10 @@ function SubjectList({ items }) {
   const [SubjectItems, setSubjectItems] = useState([]);
 
   function getSubject() {
-    const q = query(collection(db, "Subject"), where("SemesterID", "==", 1));
+    const q = query(
+      collection(db, "Subject"),
+      where("SemesterID", "==", SemesterIdInt)
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setSubjectItems(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     });
@@ -37,9 +40,9 @@ function SubjectList({ items }) {
             onClick={() =>
               navigate({
                 pathname: "/exams",
-                search: `?Subjectid=${linkParams.get("semesterid")}&contentid=${
-                  content.id
-                }`,
+                search: `?semesterid=${linkParams.get(
+                  "semesterid"
+                )}&contentid=${content.id}`,
               })
             }
           >
