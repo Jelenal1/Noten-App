@@ -23,14 +23,14 @@ function SemesterList() {
   }
   useEffect(() => {
     getSemester();
-  }, []);
+  }, [getSemester]);
 
   return (
     <>
       <Navabar PageName={"Semester"} />
       <div>
         <div className="bg-blue-600 flex justify-end">
-          <span className="text-white text-lg font-bold mr-1">{`${SemesterList.length} Items`}</span>
+          <span className="text-white text-lg font-bold mr-1">{`${SemesterItems.length} Items`}</span>
         </div>
       </div>
       <ul className="flex items-center flex-col">
