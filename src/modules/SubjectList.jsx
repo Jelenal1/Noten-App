@@ -14,16 +14,13 @@ function SubjectList({ items }) {
   function getSubject() {
     const q = query(collection(db, "Subject"), where("SemesterID", "==", 1));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      setSubjectItems(
-        ...SubjectItems,
-        querySnapshot.docs.map((doc) => ({ ...doc.data() }))
-      );
+      setSubjectItems(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     });
     return unsubscribe;
   }
   useEffect(() => {
     getSubject();
-  }, [onSnapshot]);
+  }, [SubjectItems]);
   return (
     <>
       <Navabar PageName={"Fächer"} />

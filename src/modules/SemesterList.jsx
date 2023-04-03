@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { db } from "../firbase";
 import Navabar from "./Navbar";
+import SubjectList from "./SubjectList";
 
 function SemesterList() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function SemesterList() {
   }
   useEffect(() => {
     getSemester();
-  }, [getSemester]);
+  }, [SemesterItems]);
 
   return (
     <>
